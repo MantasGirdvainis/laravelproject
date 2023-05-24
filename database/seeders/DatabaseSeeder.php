@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use App\Models\Listing;
 use Illuminate\Database\Seeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,7 +15,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(5)->create();
+
+        // sukuriam 5 userius
+        // \App\Models\User::factory(5)->create();
+
+
+
+
+        // sukuriam 1 useri duomenu bazeje "php artisan migrate:refresher --seed"
+        // sukuriam 6 listingus kurie priklausys musu sukurtam useriui.
+        $user = User::factory()->create([
+            'name' => 'Petriukas Petraitis',
+            'email' => 'petriukas@gmail.com'
+        ]);
+
+        Listing::factory(6)->create([
+            'user_id' => $user->id
+        ]);
 
         //Pridedan duomenis tiesiogiai is seeders failo:
 
@@ -43,7 +61,7 @@ class DatabaseSeeder extends Seeder
 
         //Pridedam duomenis is fatories:
 
-        Listing::factory(6)->create();
+       
 
 
 
