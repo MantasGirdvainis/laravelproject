@@ -26,23 +26,40 @@ use App\Http\Controllers\ListingController;
 // update - Update listing
 // destroy - Delete listing  
 
+
 // All listings
 
 Route::get('/', [ListingController::class, 'index']);
 
-//store listing data
+//Store listing data
 
 Route::post('/listings', [ListingController::class, 'store']);
 
 
-// show create form
+// Show create form
 
 Route::get('/listings/create', [ListingController::class, 'create']);
 
 
-//single listing
+
+//Show edit form
+
+Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);
+
+//Edit submit to update
+
+Route::put('/listings/{listing}', [ListingController::class, 'update']);
+
+
+//Delete listing
+
+Route::delete('/listings/{listing}', [ListingController::class, 'delete']);
+
+
+//Single listing
 
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
+
 
 // Route::get('/hello', function() {
 //     return response('<h1>Hello word</h1>', 200)
